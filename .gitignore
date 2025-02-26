@@ -1,0 +1,73 @@
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+
+# Ignore Visual Studio, VS Code, and JetBrains Rider files
+.vs/
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Ignore build artifacts
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.suo
+*.user
+*.ilk
+*.log
+*.ipch
+*.vsp
+*.ncb
+*.pdb
+*.opendb
+*.VC.db
+
+# Ignore NuGet packages
+*.nuget/
+
+# Ignore NuGet Packages
+*.nuget/
+
+# Ignore Angular dependencies
+TaskManagerFrontEnd/node_modules/
+TaskManagerFrontEnd/dist/

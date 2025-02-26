@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cchok\\source\\Assesments\\CSharpTasks\\TaskManagerAPI\\TaskManagerAPI.csproj": {}
+    "C:\\Users\\cchok\\source\\Assesments\\TaskManager\\TaskManagerAPI\\TaskManagerAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cchok\\source\\Assesments\\CSharpTasks\\TaskManagerAPI\\TaskManagerAPI.csproj": {
+    "C:\\Users\\cchok\\source\\Assesments\\TaskManager\\TaskManagerAPI\\TaskManagerAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cchok\\source\\Assesments\\CSharpTasks\\TaskManagerAPI\\TaskManagerAPI.csproj",
+        "projectUniqueName": "C:\\Users\\cchok\\source\\Assesments\\TaskManager\\TaskManagerAPI\\TaskManagerAPI.csproj",
         "projectName": "TaskManagerAPI",
-        "projectPath": "C:\\Users\\cchok\\source\\Assesments\\CSharpTasks\\TaskManagerAPI\\TaskManagerAPI.csproj",
+        "projectPath": "C:\\Users\\cchok\\source\\Assesments\\TaskManager\\TaskManagerAPI\\TaskManagerAPI.csproj",
         "packagesPath": "C:\\Users\\cchok\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cchok\\source\\Assesments\\CSharpTasks\\TaskManagerAPI\\obj\\",
+        "outputPath": "C:\\Users\\cchok\\source\\Assesments\\TaskManager\\TaskManagerAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
