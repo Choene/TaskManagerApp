@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   detect_changes:
@@ -12,7 +12,7 @@ jobs:
     outputs:
       api_changed: ${{ steps.filter.outputs.api }}
       frontend_changed: ${{ steps.filter.outputs.frontend }}
-      force_deploy: ${{ github.event_name == 'workflow_dispatch' }} 
+      force_deploy: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
