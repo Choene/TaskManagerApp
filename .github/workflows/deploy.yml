@@ -7,29 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  detect_changes:
-    runs-on: ubuntu-latest
-    outputs:
-      api_changed: ${{ steps.filter.outputs.api }}
-      frontend_changed: ${{ steps.filter.outputs.frontend }}
-      force_deploy: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Detect changes
-        id: filter
-        uses: dorny/paths-filter@v2
-        with:
-          filters: |
-            api:
-              - 'TaskManagerAPI/**'
-            frontend:
-              - 'TaskManagerFrontEnd/**'
-
   deploy_api:
-    needs: detect_changes
-    if: needs.detect_changes.outputs.api_changed == 'true' || needs.detect_changes.outputs.force_deploy == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -55,8 +33,6 @@ jobs:
           package: api_output
 
   deploy_frontend:
-    needs: detect_changes
-    if: needs.detect_changes.outputs.frontend_changed == 'true' || needs.detect_changes.outputs.force_deploy == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
