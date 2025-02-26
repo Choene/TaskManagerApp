@@ -1,1 +1,5 @@
-<p>task-item works!</p>
+<div class="task-item">
+  <strong>{{ task.title }}</strong> - {{ task.dueDate }}
+  <p>{{ task.description }}</p>
+  <button (click)="onDelete()">Delete</button>
+</div>
