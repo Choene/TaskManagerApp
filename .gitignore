@@ -1,73 +1,78 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# ASP.NET Core
+**/[Bb]in/
+**/[Oo]bj/
+**/.vs/
+**/launchSettings.json
+*.user
+*.suo
+*.userprefs
+*.userosscache
+*.sln.iml
+*.pubxml
+appsettings.Development.json
+/publish/
+/NuGet/
+*.nupkg
+*.swp
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# Angular
+/node_modules/
+/dist/
+/.angular/cache/
+/.rpt2_cache/
+/.tmp/
+*.ngsummary.json
+*.log
+/coverage/
+/browserslist
+/.env
+.env.local
+.env.*.local
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
-
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
-.DS_Store
-Thumbs.db
-
-
-# Ignore Visual Studio, VS Code, and JetBrains Rider files
-.vs/
-.idea/
-.vscode/*
+# IDE specific
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
+.idea/
+*.js.map
+*.js
+*.d.ts
+*.css
+*.metadata.json
 
-# Ignore build artifacts
-bin/
-obj/
-*.exe
-*.dll
-*.pdb
-*.cache
-*.suo
-*.user
-*.ilk
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment files (except production)
+/src/environments/environment.ts
+!src/environments/environment.prod.ts
+
+# Debug files
 *.log
-*.ipch
-*.vsp
-*.ncb
-*.pdb
-*.opendb
-*.VC.db
+*.pid
+*.pid.lock
 
-# Ignore NuGet packages
-*.nuget/
+# Build files
+*.js
+*.js.map
+*.d.ts
+*.metadata.json
 
-# Ignore NuGet Packages
-*.nuget/
-
-# Ignore Angular dependencies
-TaskManagerFrontEnd/node_modules/
-TaskManagerFrontEnd/dist/
+# Misc
+.sass-cache/
+/connect.lock
+/typings/
+yarn.lock
+package-lock.json
+*.bak
+*.tmp
+*.patch
+*.orig

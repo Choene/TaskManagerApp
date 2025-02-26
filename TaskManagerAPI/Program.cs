@@ -36,7 +36,7 @@ var app = builder.Build();
 
 app.UseRouting();
 
-// CORS is applied before authentication/authorization middleware
+// CORS before authentication/authorization middleware
 app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
