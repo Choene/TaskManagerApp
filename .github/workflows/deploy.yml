@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch:  # Allows manual deployment trigger
 
 jobs:
   deploy_api:
@@ -19,9 +19,11 @@ jobs:
           dotnet-version: '9.0'
 
       - name: Build API
+        working-directory: TaskManagerAPI
         run: dotnet build --configuration Release
 
       - name: Publish API
+        working-directory: TaskManagerAPI
         run: dotnet publish -c Release -o api_output
 
       - name: Deploy API to Azure Web App
@@ -30,7 +32,7 @@ jobs:
           app-name: 'TaskManagerAPI'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: api_output
+          package: TaskManagerAPI/api_output
 
   deploy_frontend:
     runs-on: ubuntu-latest
@@ -51,10 +53,13 @@ jobs:
         working-directory: TaskManagerFrontEnd
         run: npm run build --prod
 
+      - name: Move files to root for deployment
+        run: mv TaskManagerFrontEnd/dist/task-manager-frontend/browser TaskManagerFrontEnd/dist/wwwroot
+
       - name: Deploy Frontend to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'TaskManagerFrontend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
-          package: TaskManagerFrontEnd/dist/task-manager-frontend
+          package: TaskManagerFrontEnd/dist/wwwroot
