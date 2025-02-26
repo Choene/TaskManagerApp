@@ -51,7 +51,7 @@ jobs:
 
       - name: Build Frontend
         working-directory: TaskManagerFrontEnd
-        run: npm run build -- --prod
+        run: npm run build -- --configuration=production
 
       - name: Ensure deployment directory exists
         run: mkdir -p TaskManagerFrontEnd/dist/wwwroot
