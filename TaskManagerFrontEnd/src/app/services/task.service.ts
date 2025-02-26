@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-interface Task {
-  id?: number;
-  title: string;
-  description: string;
-  dueDate: string;
-}
+import { Task } from '../models/task.model';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
-  private apiUrl = 'https://localhost:7148/api/tasks';
+  private apiUrl = 'https://localhost:7021/api/tasks';
 
   constructor(private http: HttpClient) {}
 
