@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Allows manual deployment trigger
+  workflow_dispatch: 
 
 jobs:
   deploy_api:
@@ -51,10 +51,13 @@ jobs:
 
       - name: Build Frontend
         working-directory: TaskManagerFrontEnd
-        run: npm run build --prod
+        run: npm run build -- --prod
 
-      - name: Move files to root for deployment
-        run: mv TaskManagerFrontEnd/dist/task-manager-frontend/browser TaskManagerFrontEnd/dist/wwwroot
+      - name: Ensure deployment directory exists
+        run: mkdir -p TaskManagerFrontEnd/dist/wwwroot
+
+      - name: Move Angular build files
+        run: mv -f TaskManagerFrontEnd/dist/task-manager-frontend/browser TaskManagerFrontEnd/dist/wwwroot/
 
       - name: Deploy Frontend to Azure Web App
         uses: azure/webapps-deploy@v2
