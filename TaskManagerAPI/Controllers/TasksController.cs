@@ -25,6 +25,7 @@ namespace TaskManagerAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<TaskItem>> AddTask(TaskItem task)
         {
+            task.Id = 0;
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
             return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, task);
