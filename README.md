@@ -94,5 +94,5 @@ app.UseCors(policy =>
 
 
 ---
-🚀 **y CHOENE.**
+**CHOENE CHOKOE.**
 
