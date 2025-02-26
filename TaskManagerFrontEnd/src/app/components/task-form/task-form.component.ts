@@ -14,6 +14,7 @@ import { Task } from '../../models/task.model';
 export class TaskFormComponent {
   @Output() taskAdded = new EventEmitter<Task>();
   task: Task = { id: 0, title: '', description: '', dueDate: new Date().toISOString() };
+  showSuccessMessage = false;
 
   constructor(private taskService: TaskService) {}
 
@@ -23,6 +24,9 @@ export class TaskFormComponent {
     this.taskService.addTask(this.task).subscribe(() => {
       this.taskAdded.emit(this.task);
       this.task = { id: 0, title: '', description: '', dueDate: new Date().toISOString() };
+
+      this.showSuccessMessage = true;
+      setTimeout(() => this.showSuccessMessage = false, 2000);
     });
   }
 

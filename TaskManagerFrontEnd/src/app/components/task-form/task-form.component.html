@@ -1,3 +1,7 @@
+<div *ngIf="showSuccessMessage" class="alert alert-success text-center" role="alert">
+  Task added successfully!
+</div>
+
 <form (ngSubmit)="submitTask()" class="text-center">
   <div class="mb-3">
     <label class="form-label fw-bold">Title</label>

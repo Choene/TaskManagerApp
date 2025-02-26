@@ -56,4 +56,8 @@ export class TaskListComponent implements OnInit {
       this.tasks = this.tasks.filter((task) => task.id !== id);
     });
   }
+
+  onTaskAdded(): void {
+    this.loadTasks();
+  }
 }
