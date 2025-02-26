@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:4200", "https://taskmanagerui.z6.web.core.windows.net")
+        policy => policy.WithOrigins("http://localhost:4200", "https://red-island-02eba4303.4.azurestaticapps.net")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
