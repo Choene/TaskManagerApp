@@ -1,0 +1,88 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  detect_changes:
+    runs-on: ubuntu-latest
+    outputs:
+      api_changed: ${{ steps.changes.outputs.api_changed }}
+      frontend_changed: ${{ steps.changes.outputs.frontend_changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect changes
+        id: changes
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            api_changed:
+              - 'TaskManagerAPI/**'
+            frontend_changed:
+              - 'TaskManagerFrontEnd/**'
+
+  deploy_api:
+    needs: detect_changes
+    if: needs.detect_changes.outputs.api_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0'
+
+      - name: Build API
+        working-directory: TaskManagerAPI
+        run: |
+          dotnet restore
+          dotnet build --configuration Release --no-restore
+
+      - name: Publish API
+        working-directory: TaskManagerAPI
+        run: |
+          dotnet publish -c Release -o ./publish
+
+      - name: Deploy API to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'YOUR_AZURE_API_APP_NAME'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: TaskManagerAPI/publish
+
+  deploy_frontend:
+    needs: detect_changes
+    if: needs.detect_changes.outputs.frontend_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: TaskManagerFrontEnd
+        run: npm install
+
+      - name: Build Angular app
+        working-directory: TaskManagerFrontEnd
+        run: npm run build -- --configuration production
+
+      - name: Deploy Frontend to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "TaskManagerFrontEnd/dist"
+          api_location: ""
+          output_location: "TaskManagerFrontEnd/dist"
